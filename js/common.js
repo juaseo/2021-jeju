@@ -24,7 +24,7 @@ $('.header-wrapper .bt-hide').click(onHideNotice)
 $('.header-wrapper .bt-close').click(onCloseNotice)
 $('.header-wrapper .bt-today').click(onHideTodayNotice)
 $('.header-wrapper .link-lang').click(onToggleLang).mouseenter(onShowLang).mouseleave(onHideLang)
-
+$('.header-wrapper .link-lang .lang').click(onChgLang)
 
 
 
@@ -62,6 +62,13 @@ function onHideLang() {
 	$('.header-wrapper .link-lang .hover').hide()
 }
 
+function onChgLang() {
+	var $span =  $(this).parent().prev().find('span')
+	var myLang = $(this).text() 
+	var spanLang = $span.text()
+	$span.text(myLang)
+	$(this).text(spanLang)
+}
 
 
 
