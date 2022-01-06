@@ -1,17 +1,15 @@
 //*************** 글로벌 설정 *****************/
-init()
+initCommon()
 
 
 
 
 //*************** 사용자 함수 *****************/
-function init() {
-	$('.header-wrapper').find('.notice-content').hide()
-	$('.header-wrapper').find('.bt-hide').hide()
+function initCommon() {
 	if($.cookie('hideNotice') === 'Y') onCloseNotice()
 	else {
-		$('.header-wrapper').find('.notice-content').hide()
-		$('.header-wrapper').find('.bt-hide').hide()
+		$('.notice-wrapper').find('.notice-content').hide()
+		$('.notice-wrapper').find('.bt-hide').hide()
 	}
 	}
 
@@ -19,30 +17,41 @@ function init() {
 
 
 //*************** 이벤트 등록 *****************/
-$('.header-wrapper .bt-show').click(onShowNotice)
-$('.header-wrapper .bt-hide').click(onHideNotice)
-$('.header-wrapper .bt-close').click(onCloseNotice)
-$('.header-wrapper .bt-today').click(onHideTodayNotice)
+$(window).scroll(onScroll).trigger('scroll')
+
+
+$('.notice-wrapper .bt-show').click(onShowNotice)
+$('.notice-wrapper .bt-hide').click(onHideNotice)
+$('.notice-wrapper .bt-close').click(onCloseNotice)
+$('.notice-wrapper .bt-today').click(onHideTodayNotice)
+
 $('.header-wrapper .link-lang').click(onToggleLang).mouseenter(onShowLang).mouseleave(onHideLang)
 $('.header-wrapper .link-lang .lang').click(onChgLang)
 
 
 
 //*************** 이벤트 콜백 *****************/
+function onScroll() {
+  var scTop = $(this).scrollTop()
+	var noticeGap = 5
+	//* notice-wrapper 제어 *//
+
+}
+
 function onShowNotice() {
-	$('.header-wrapper').find('.bt-show').hide()
-	$('.header-wrapper').find('.bt-hide').show()
-	$('.header-wrapper').find('.notice-content').show()
+	$('.notice-wrapper').find('.bt-show').hide()
+	$('.notice-wrapper').find('.bt-hide').show()
+	$('.notice-wrapper').find('.notice-content').show()
 }
 
 function onHideNotice() {
-	$('.header-wrapper').find('.bt-show').show()
-	$('.header-wrapper').find('.bt-hide').hide()
-	$('.header-wrapper').find('.notice-content').hide()
+	$('.notice-wrapper').find('.bt-show').show()
+	$('.notice-wrapper').find('.bt-hide').hide()
+	$('.notice-wrapper').find('.notice-content').hide()
 }
 
 function onCloseNotice() {
-	$('.header-wrapper').find('.notice-wrapper').hide()
+	$('.notice-wrapper').hide()
 }
 
 function onHideTodayNotice() {
