@@ -1,4 +1,5 @@
 //*************** 글로벌 설정 *****************/
+var isHeaderAni = false
 initCommon()
 
 
@@ -11,13 +12,40 @@ function initCommon() {
 		$('.notice-wrapper').find('.notice-content').hide()
 		$('.notice-wrapper').find('.bt-hide').hide()
 	}
+}
+
+function scrollNotice(scTop) {
+	var $notice = $('.notice-wrapper')
+	var $link = $('.link-wrapper')
+	var $navi = $('.navi-wrapper')
+	var $header = $('.header-wrapper')
+  var noticeHeight , linkHeight,  naviHeight, headerHeight
+
+	if(scTop == 0) {
+		$notice.show()
+		$link.show()
+		$header.css('top', 'unset')
 	}
-
-
+	else if (scTop < 150) {
+		$notice.hide()
+		$link.hide()
+		$header.css('top', 'unset')
+		$header.removeClass('active')
+	}
+	else {
+		$notice.hide()
+		$link.hide()
+		headerHeight = $header.outerHeight()
+		$header.css('top', -headerHeight + 'px')
+		$header.css('top')
+		$header.css('top', 0)
+		$header.addClass('active')
+	}
+}
 
 
 //*************** 이벤트 등록 *****************/
-$(window).scroll(onScroll).trigger('scroll')
+$(window).scroll(onScroll).trigger('scroll');
 
 
 $('.notice-wrapper .bt-show').click(onShowNotice)
@@ -30,12 +58,12 @@ $('.header-wrapper .link-lang .lang').click(onChgLang)
 
 
 
-//*************** 이벤트 콜백 *****************/
-function onScroll() {
-  var scTop = $(this).scrollTop()
-	var noticeGap = 5
-	//* notice-wrapper 제어 *//
 
+//*************** 이벤트 콜백 *****************/
+function onScroll(e) {
+  var scTop = $(this).scrollTop()
+	//* notice-wrapper 제어 *//
+	scrollNotice(scTop)
 }
 
 function onShowNotice() {
