@@ -17,9 +17,8 @@ function initCommon() {
 function scrollNotice(scTop) {
 	var $notice = $('.notice-wrapper')
 	var $link = $('.link-wrapper')
-	var $navi = $('.navi-wrapper')
 	var $header = $('.header-wrapper')
-  var noticeHeight , linkHeight,  naviHeight, headerHeight
+  var headerHeight
 
 	if(scTop == 0) {
 		$notice.show()
