@@ -1,44 +1,44 @@
 //*************** 글로벌 설정 *****************/
 var isHeaderAni = false
-initCommon()
+init()
 
 
 
 
 //*************** 사용자 함수 *****************/
-function initCommon() {
-	if($.cookie('hideNotice') === 'Y') onCloseNotice()
+function init() {
+	if($.cookie('hideNotice') === 'Y') onCloseNotice();
 	else {
-		$('.notice-wrapper').find('.notice-content').hide()
-		$('.notice-wrapper').find('.bt-hide').hide()
+		$('.notice-wrapper').find('.notice-content').hide();
+		$('.notice-wrapper').find('.bt-hide').hide();
 	}
 }
 
 function scrollNotice(scTop) {
-	var $notice = $('.notice-wrapper')
-	var $link = $('.link-wrapper')
-	var $header = $('.header-wrapper')
-  var headerHeight
-
+	var $notice = $('.notice-wrapper');
+	var $link = $('.link-wrapper');
+	var $header = $('.header-wrapper');
+	var headerHeight;
 	if(scTop == 0) {
-		$notice.show()
-		$link.show()
-		$header.css('top', 'unset')
+		if($.cookie('hideNotice') !== 'Y') $notice.show();
+		$link.show();
+		$header.css('top', 'unset');
+		$header.removeClass('active');
 	}
-	else if (scTop < 150) {
-		$notice.hide()
-		$link.hide()
-		$header.css('top', 'unset')
-		$header.removeClass('active')
-	}
+	// else if(scTop < 150) {
+	// 	$notice.hide()
+	// 	$link.hide()
+	// 	$header.css('top', 'unset')
+	// 	$header.removeClass('active')
+	// }
 	else {
-		$notice.hide()
-		$link.hide()
-		headerHeight = $header.outerHeight()
-		$header.css('top', -headerHeight + 'px')
-		$header.css('top')
-		$header.css('top', 0)
-		$header.addClass('active')
+		$notice.hide();
+		$link.hide();
+		headerHeight = $header.outerHeight();
+		$header.css('top', -headerHeight + 'px');
+		$header.css('top');
+		$header.css('top', 0);
+		$header.addClass('active');
 	}
 }
 
@@ -47,10 +47,15 @@ function scrollNotice(scTop) {
 $(window).scroll(onScroll).trigger('scroll');
 
 
+$('.header-wrapper .navi').mouseenter(onNaviEnter)
+$('.header-wrapper .navi').mouseleave(onNaviLeave)
+
+
 $('.notice-wrapper .bt-show').click(onShowNotice)
 $('.notice-wrapper .bt-hide').click(onHideNotice)
 $('.notice-wrapper .bt-close').click(onCloseNotice)
 $('.notice-wrapper .bt-today').click(onHideTodayNotice)
+
 
 $('.header-wrapper .link-lang').click(onToggleLang).mouseenter(onShowLang).mouseleave(onHideLang)
 $('.header-wrapper .link-lang .lang').click(onChgLang)
@@ -58,7 +63,17 @@ $('.header-wrapper .link-lang .lang').click(onChgLang)
 
 
 
+
 //*************** 이벤트 콜백 *****************/
+function onNaviEnter() {
+	$('.header-wrapper .sub-wrapper').hide()
+	$(this).find('.sub-wrapper').show()
+}
+
+function onNaviLeave() {
+	$('.header-wrapper .sub-wrapper').hide()
+}
+
 function onScroll(e) {
   var scTop = $(this).scrollTop()
 	//* notice-wrapper 제어 *//
