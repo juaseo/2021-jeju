@@ -2,7 +2,15 @@
 
 
 /********************** main-wrapper *********************/
+.main-wrapper .slide-stage {width: 100%; height: 100vh; overflow: hidden; position: relative;}
+.main-wrapper .slide {width: 100%; height: 100%; position: absolute; top: 0; left: 0; overflow: hidden; z-index: 1;}
+.main-wrapper .slide > img,
+.main-wrapper .slide > video {min-width: 100%; min-height: 100%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);}
 
+.main-wrapper .slide > .slide-body {width: 100%; position: absolute; top: 50%; transform: translateY(-50%); text-align: center;}
+.main-wrapper .slide  .slide-title {font-size: 4.5em; color: #fff; font-weight: 500; margin-bottom: .75em;}
+.main-wrapper .slide  .bt-video {font-size: 1.25em; color: #fff; display: flex; align-items: center;}
+.main-wrapper .slide  .bt-video
 
 
 /********************** dream-wrapper *********************/

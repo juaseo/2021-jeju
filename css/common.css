@@ -3,7 +3,7 @@
 
 
 /********************** 글로벌 설정 *********************/
-html, body {font-size: 16px; font-family: 'Noto Sans KR', sans-serif; height: 10000px;}
+html, body {font-family: 'Jost', 'Noto Sans KR', sans-serif; height: 10000px;}
 .wrapper {max-width: 1368px; margin: auto;}
 .bt-ghost {padding: .875em 1.75em; border: 1px solid #999; color: #fff; transition: all .5s;}
 .bt-ghost:hover {background-color: #fff; color: #b38859;}
@@ -32,7 +32,8 @@ html, body {font-size: 16px; font-family: 'Noto Sans KR', sans-serif; height: 10
 
 
 /********************** header-wrapper *********************/
-.header-wrapper {color: #fff; position: fixed; width: 100%; transition: top .25s;}
+.header-wrapper {color: #fff; position: fixed; width: 100%; transition: top .25s; z-index: 99;}
+
 
 .header-wrapper .link-wrapper {border-bottom: 1px solid rgba(255,255,255, .1);}
 .header-wrapper .link-wrap {padding: 1em 0; display: flex; justify-content: flex-end; align-items: center;}
@@ -58,12 +59,13 @@ html, body {font-size: 16px; font-family: 'Noto Sans KR', sans-serif; height: 10
 .header-wrapper .navi-wrap-lt {order: 1;}
 .header-wrapper .navi-wrap-rt {order: 3; justify-content: flex-end;}
 .header-wrapper .navi {padding: 0 2em; position: relative; display: flex; align-items: center;}
-.header-wrapper .navi > a {font-family: 'Jost', 'Noto Sans KR', sans-serif; text-shadow: 0 0 8px rgba(0, 0, 0, .75); font-size: 1.125em;}
+.header-wrapper .navi.has-sub.active::after {width: 40px; height: 2px; background-color: #b38859; content: ''; display: block; position: absolute; transform: rotate(90deg); transform-origin: left; top: 70px; left: calc(50% - 1px);}
+.header-wrapper .navi > a {text-shadow: 0 0 8px rgba(0, 0, 0, .75); font-size: 1.125em;}
 .header-wrapper .navi:first-child {margin-left: 0em;}
 .header-wrapper .navi:last-child {margin-right: 0em;}
 
+
 .header-wrapper .navi > .sub-wrapper {position: absolute; background-color: #fff; padding: 2em 2.5em; top: 92px; border-top: 1px solid #ddd;}
-.header-wrapper .navi > .sub-wrapper::before {width: 40px; height: 2px; background-color: #b38859; content: ''; display: block; position: absolute; top: 0; transform: rotate(90deg);}
 
 
 .header-wrapper .sub-wrap h3.title {font-family: 'Jost', 'Noto Sans KR', sans-serif; color: #222; font-size: 1.25em; padding-bottom: 1em; display: flex; align-items: center;}
@@ -76,17 +78,15 @@ html, body {font-size: 16px; font-family: 'Noto Sans KR', sans-serif; height: 10
 .header-wrapper .sub-wrap .lists:last-child {padding-right: 0;}
 .header-wrapper .sub-wrap .lists:not(:last-child) {border-right: 1px solid #ddd;}
 .header-wrapper .sub-wrap h4.title {margin-bottom: 1em;}
-.header-wrapper .sub-wrap h4.title::after {width: 30px; height: 2px; background-color: #b38859; content: ''; display: block; margin-top: .75em;}
+.header-wrapper .sub-wrap h4.title::after {width: 20px; height: 2px; background-color: #b38859; content: ''; display: block; margin-top: .75em;}
 .header-wrapper .sub-wrap h4.title > a {color: #b38859;}
 .header-wrapper .sub-wrap .list {margin-bottom: 1em;}
+.header-wrapper .sub-wrap .list:hover {color: #555;}
 
 
 .header-wrapper .navi > .sub-wrapper.stay {width: 540px; left: -50px; display: none;}
-.header-wrapper .navi > .sub-wrapper.stay::before {left: 82px;}
 .header-wrapper .navi > .sub-wrapper.wine {width: 1100px; left: -220px; display: none;}
-.header-wrapper .navi > .sub-wrapper.wine::before {left: 289px;}
 .header-wrapper .navi > .sub-wrapper.things {width: 600px; right: -210px; display: none;}
-.header-wrapper .navi > .sub-wrapper.things::before {left: 280px;}
 
 
 .header-wrapper:hover,
