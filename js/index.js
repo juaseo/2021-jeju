@@ -30,10 +30,15 @@ video.addEventListener('loadeddata', onLoadedVideo)
 video.addEventListener('ended', onPlay)
 $('.bt-video').click(onModalVideo)
 $('.modal-video').find('.bt-close').click(onModalVideoClose)
+$('.cookie-wrapper').find('.bt-close').click(onCookieClose)
 
 
 
 //*************** 이벤트 콜백 *****************/
+function onCookieClose() {
+	$('.cookie-wrapper').hide()
+}
+
 function onModalVideoClose() {
 	$('.modal-video').hide()
 }
