@@ -9,7 +9,13 @@ html, body {font-family: 'Jost', 'Noto Sans KR', sans-serif; height: 10000px;}
 .bt-ghost:hover {background-color: #fff; color: #b38859;}
 .bt-ghost.gold {border: 1px solid #fff;}
 .bt-ghost.gold:hover {background-color: #b38859; color: #fff !important;}
+.bt-ghost.angle::after {content: '〉'; display: inline-block; margin-left: .5em; margin-right: -.75em;}
 .bt-anchor {text-decoration: underline;}
+
+.modal-wrapper {width: 100%; height: 100vh; position: fixed; top: 0; left: 0; background-color: rgba(0, 0, 0, .85); display: none; z-index: 100;}
+.modal-wrapper > .modal-stage {height: 100%; width: 100%; display: flex; align-items: center; justify-content: center;}
+.modal-wrapper .bt-close {cursor: pointer;}
+
 
 
 /********************** noticce-wrapper *********************/
