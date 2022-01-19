@@ -7,10 +7,10 @@
 .main-wrapper .slide > img,
 .main-wrapper .slide > video {min-width: 100%; min-height: 100%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);}
 
-.main-wrapper .slide > .slide-body {width: 100%; position: absolute; top: 50%; transform: translateY(-50%); text-align: center;}
+.main-wrapper .slide > .slide-body {width: 100%; position: absolute; top: 50%; transform: translateY(-50%); text-align: center; text-shadow: 1px 1px 1px rgba(0, 0, 0, .7);}
 .main-wrapper .slide  .slide-title {font-size: 4.5em; color: #fff; font-weight: 500; margin-bottom: .75em;}
-.main-wrapper .slide  .bt-video {font-size: 1.25em; color: #fff; display: flex; align-items: center;}
-.main-wrapper .slide  .bt-video
+.main-wrapper .slide  .bt-video {font-size: 1.25em; color: #fff; display: flex; align-items: center; justify-content: center;}
+.main-wrapper .slide  .bt-video i {font-size: 1.25em; margin-right: .5em; margin-top: -5px;}
 
 
 /********************** dream-wrapper *********************/
