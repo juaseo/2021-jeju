@@ -1,6 +1,6 @@
 //*************** header-wrapper *****************/
-$(function() {
-		
+$(function () {
+
 	//*************** 글로벌 설정 *****************/
 	var isHeaderAni = false
 	init()
@@ -10,7 +10,7 @@ $(function() {
 
 	//*************** 사용자 함수 *****************/
 	function init() {
-		if($.cookie('hideNotice') === 'Y') onCloseNotice();
+		if ($.cookie('hideNotice') === 'Y') onCloseNotice();
 		else {
 			$('.notice-wrapper').find('.notice-content').hide();
 			$('.notice-wrapper').find('.bt-hide').hide();
@@ -22,8 +22,8 @@ $(function() {
 		var $link = $('.link-wrapper');
 		var $header = $('.header-wrapper');
 		var headerHeight;
-		if(scTop == 0) {
-			if($.cookie('hideNotice') !== 'Y') $notice.show();
+		if (scTop == 0) {
+			if ($.cookie('hideNotice') !== 'Y') $notice.show();
 			$link.show();
 			$header.css('top', 'unset');
 			$header.removeClass('active');
@@ -103,7 +103,10 @@ $(function() {
 	}
 
 	function onHideTodayNotice() {
-		$.cookie('hideNotice', 'Y', { expires: 1, path: '/' })
+		$.cookie('hideNotice', 'Y', {
+			expires: 1,
+			path: '/'
+		})
 		onCloseNotice()
 	}
 
@@ -120,8 +123,8 @@ $(function() {
 	}
 
 	function onChgLang() {
-		var $span =  $(this).parent().prev().find('span')
-		var myLang = $(this).text() 
+		var $span = $(this).parent().prev().find('span')
+		var myLang = $(this).text()
 		var spanLang = $span.text()
 		$span.text(myLang)
 		$(this).text(spanLang)
