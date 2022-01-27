@@ -30,13 +30,15 @@
 .main-wrapper .info-stage .info:nth-child(2) {border-right: 1px solid rgba(255, 255, 255, .25);}
 .main-wrapper .info-stage .info:hover {color: rgba(255, 255, 255, 1);}
 .main-wrapper .info-stage .info > div {display: flex; justify-content: center;}
-.main-wrapper .info-stage .info > div > .cnt {font-size: 3em; margin-left: .25em;}
+.main-wrapper .info-stage .info > div > .cnt {font-size: 2.5em; margin-left: .5em;}
 .main-wrapper .info-stage .info > h3 {padding-top: 1em; text-align: center;}
 .main-wrapper .info-stage .weather {color: #fff; padding: 1.5em; text-align: center; background-color: rgba(255, 255, 255, .2);}
-.main-wrapper .info-stage .weather .icon {font-size: 2em;}
-.main-wrapper .info-stage .weather .temp {font-size: 2em;}
-.main-wrapper .info-stage .weather .date {padding-top: 1em; line-height: 1.25;}
+.main-wrapper .info-stage .weather .icon {font-size: 1.5em; padding-right: .25em;}
+.main-wrapper .info-stage .weather .temp {font-size: 1.5em;}
+.main-wrapper .info-stage .weather .date {padding-top: 1em; padding-bottom: .5em; line-height: 1.25;}
 .main-wrapper .info-stage .weather .time {font-size: 1.25em;}
+.main-wrapper .info-stage .weather .time span {font-size: 1.25em; font-weight: 500;}
+.main-wrapper .info-stage .weather .time small {font-size: 1em;}
 
 
 
