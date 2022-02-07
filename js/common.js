@@ -45,6 +45,11 @@ $(function () {
 		}
 	}
 
+	function movingTop(scTop) {
+		if(scTop === 0) $('.bt-moving-top').removeClass('active')
+		else $('.bt-moving-top').addClass('active')
+	}
+
 
 	//*************** 이벤트 등록 *****************/
 	$(window).scroll(onScroll).trigger('scroll');
@@ -63,12 +68,18 @@ $(function () {
 	$('.header-wrapper .link-lang').click(onToggleLang).mouseenter(onShowLang).mouseleave(onHideLang)
 	$('.header-wrapper .link-lang .lang').click(onChgLang)
 
+	$('.bt-moving-top').click(onMovingTop)
+
 
 
 
 
 
 	//*************** 이벤트 콜백 *****************/
+	function onMovingTop() {
+		$('html, body').stop().animate({scrollTop: 0}, 100)
+	}
+
 	function onNaviEnter() {
 		$('.header-wrapper .sub-wrapper').hide()
 		$(this).find('.sub-wrapper').show()
@@ -85,6 +96,7 @@ $(function () {
 		var scTop = $(this).scrollTop()
 		//* notice-wrapper 제어 *//
 		scrollNotice(scTop)
+		movingTop(scTop)
 	}
 
 	function onShowNotice() {
