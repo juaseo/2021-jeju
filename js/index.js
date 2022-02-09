@@ -55,10 +55,35 @@ $(function () {
 			$('<i class="pager" ></i>').appendTo($pagerSlide).click(onPagerClick).addClass((idx === i) ? 'active' : '')
 		}
 		ani()
+		slideDream()
 	}
 
 	function weather() {
 		navigator.geolocation.getCurrentPosition(onGetGeo, onErrorGeo)
+	}
+
+	function slideDream() {
+		var swiper = new Swiper('.dream-wrapper .swiper-container', {
+			pagination: {
+				el: ".dream-wrapper .pager-wrapper",
+				clickable: true,
+			},
+			navigation: {
+				nextEl: ".dream-wrapper .bt-slide.right",
+				prevEl: ".dream-wrapper .bt-slide.left",
+			},
+			loop: true,
+			slidesPerView: 1,
+			spaceBetween: 40,
+			breakpoints: {
+				576: {
+					slidesPerView: 2
+				},
+				992: {
+					slidesPerView: 3
+				},
+			},
+		});
 	}
 
 
@@ -68,6 +93,7 @@ $(function () {
 	$('.bt-video').click(onModalVideo)
 	$('.modal-video').find('.bt-close').click(onModalVideoClose)
 	$('.cookie-wrapper').find('.bt-confirm').click(onCloseTodayCookie)
+	$('.cookie-wrapper').find('.bt-close').click(onCloseCookie)
 	$('.pager-wrapper .pager').click(function () {
 		$('.pager-wrapper .pager').removeClass('active')
 		$(this).addClass('active')
