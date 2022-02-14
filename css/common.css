@@ -14,10 +14,10 @@ html, body {font-size: 16px; font-family: 'Jost', 'Noto Sans KR', sans-serif; he
 .bt-ghost.angle::after {content: '〉'; display: inline-block; margin-left: .5em; margin-right: -.75em;}
 .bt-anchor {text-decoration: underline;}
 
-.bt-moving-top {width: 70px; height: 70px; position: fixed; border-radius: 50%; background-color: #111; color: #fff; display: flex; justify-content: center; align-items: center; flex-direction: column; right: 2em; bottom: 2em; transform: translateY(calc(2em + 70px)); z-index: 98; line-height: 1.25; transition: all .35s; opacity: 0;}
+.bt-moving-top {width: 70px; height: 70px; position: fixed; border-radius: 50%; background-color: #222; color: #fff; display: flex; justify-content: center; align-items: center; flex-direction: column; right: 2em; bottom: 2em; transform: translateY(calc(2em + 70px)); z-index: 98; line-height: 1.25; transition: all .35s; opacity: 0;}
 .bt-moving-top.active {opacity: 1; transform: translateY(0);}
 .bt-moving-top > i {transition: all .35s;}
-.bt-moving-top:hover {background-color: #222;}
+.bt-moving-top:hover {background-color: #444;}
 .bt-moving-top:hover > i {transform: translateY(-.25em);}
 
 .pager-wrapper .pager,

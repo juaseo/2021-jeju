@@ -65,7 +65,7 @@ body > section {position: relative; z-index: 3; background-color: #fff; padding:
 .dream-wrapper .slide-stage .img-wrap {overflow: hidden;}
 .dream-wrapper .slide-stage .img-wrap img {transition: all 1s;}
 .dream-wrapper .slide-stage .img-wrap:hover img {transform: scale(1.1);}
-.dream-wrapper .slide-stage .cont-wrap {padding: 8%; min-height: 250px; position: relative; background-color: #fff;}
+.dream-wrapper .slide-stage .cont-wrap {padding: 8%; min-height: 250px; position: relative; background-color: #fff; border: 1px solid #ddd;}
 .dream-wrapper .slide-stage .cont-wrap  .title {font-size: 1.75em; margin-bottom: .5em; text-align: center;}
 .dream-wrapper .slide-stage .cont-wrap  .desc {font-size: 1.125em; color: #888; line-height: 1.5;}
 .dream-wrapper .slide-stage .cont-wrap .teg {position: absolute; font-size: 1em; color: #fff; background-color: #f87538; padding: 0 .75em; height: 26px; line-height: 26px; border-radius: 13px; top: -13px; left: 10%;}
