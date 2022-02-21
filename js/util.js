@@ -68,20 +68,6 @@ function scrollSpy(el, cls, _gap) {
 
 
 /*************** getSwiper *****************/
-/*
-- cls : '.promo-wrapper
-- opt 
-{
-	pager: true,
-	navi: true,
-	auto: true,
-	autoEl: '.slide-stage'
-	delay: 3000,
-	loop: true,
-	space: 40,
-	break: 1
-}
-*/
 function getSwiper(el, opt) {
 	var opt = opt || {};
 	var autoEl = el + ' ' + (opt.autoEl || '.slide-stage');

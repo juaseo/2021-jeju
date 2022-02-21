@@ -1,97 +1,12 @@
 //*************** index *****************/
 $(function () {
 
-	function getSwiperOption(cls, opt) {
-		/* 
-		- cls: '.promo-wrapper'
-		-opt
-		{
-			pager: true,
-			navi: true,
-			auto: true,
-			delay: 3000,
-			loop: true,
-			space: 40,
-			break: 4
-		}
-		*/
-
-		var pagination = (opt.pager === false) ? false : {
-			el: cls + '.pager-wrapper',
-			clickable: true
-		}
-
-		var navigation = (opt.navi === false) ? false : {
-			nextEl: cls + '.bt-slide.right',
-			prevEl: cls + '.bt-slide.left',
-		}
-
-		var autoplay = (opt.auto === false) ? false : {
-			delay: opt.delay || 3000
-		}
-
-		var breakpoints = {};
-		if (opt.break == 2) {
-			breakpoints = {
-				768: {
-					slidesPerView: 2
-				}
-			}
-		} else if (opt.break == 3) {
-			breakpoints = {
-				768: {
-					slidesPerView: 2
-				},
-				1200: {
-					slidesPerView: 3
-				}
-			}
-		} else if (opt.break == 4) {
-			breakpoints = {
-				576: {
-					slidesPerView: 2
-				},
-				992: {
-					slidesPerView: 3
-				},
-				1200: {
-					slidesPerView: 4
-				}
-			}
-		} else if (opt.break == 5) {
-			breakpoints = {
-				576: {
-					slidesPerView: 2
-				},
-				768: {
-					slidesPerView: 3
-				},
-				992: {
-					slidesPerView: 4
-				},
-				1200: {
-					slidesPerView: 5
-				}
-			}
-		}
-
-
-		return {
-			pagination: pagination,
-			navigation: navigation,
-			autoplay: autoplay,
-			loop: opt.loop === false ? false : true,
-			slidesPerView: 1,
-			spaceBetween: opt.space || 40,
-			breakpoints: breakpoints
-		}
-	}
-
 	setCookie()
 	weather()
 	slideMain()
 	slideDream()
 	slidePromo()
+	initStyle()
 
 	function setCookie() {
 		var $cookieWrapper = $('.cookie-wrapper')
@@ -242,39 +157,49 @@ $(function () {
 	}
 
 	function slideDream() {
-		var swiper = new Swiper('.dream-wrapper .swiper-container', );
-
-		$('.dream-wrapper .slide-stage').hover(function () {
-			swiper.autoplay.stop()
-		}, function () {
-			swiper.autoplay.start()
-		})
+		var swiper = getSwiper('.dream-wrapper', { break: 3 })
+		// var swiper = new Swiper(container, getSwiper(el, { break: 3 }));
+		// swiperHover(swiper, el)
 	}
 
 	function slidePromo() {
-		var $promoWrapper = $('.promo-wrapper')
-		var $slideWrap = $promoWrapper.find('.slide-wrap')
+		var $promoWrapper = $('.promo-wrapper');
+		var $slideWrapper = $promoWrapper.find('.slide-wrapper');
 
 		function onGetData(r) {
+			// for(var i=0; i<r.promo.length; i++) {}
 			r.promo.forEach(function (v, i) {
-				var html = ''
+				var html = '';
 				html += '<li class="slide swiper-slide">';
-				html += '<div class="img-wrap">';
-				html += '<img src="' + v.src + '" alt="메뉴" class="w-100">';
+				html += '<div class="img-wrap ratio-wrap" data-ratio="1">';
+				html += '<div class="ratio-bg" style="background-image: url(' + v.src + ');"></div>';
 				html += '</div>';
 				html += '<div class="cont-wrap">';
 				html += '<h3 class="title">' + v.title + '</h3>';
 				html += '<div class="desc">' + v.desc + '</div>';
 				html += '</div>';
 				html += '</li>';
-				$slideWrap.append(html)
+				$slideWrapper.append(html);
 			})
-			var swiper = new Swiper('.promo-wrapper .swiper-container', )
+			var swiper = getSwiper('.promo-wrapper', {
+				break: 4,
+				pager: false
+			});
 		}
-
-		$.get('../json/promotion.json', onGetData)
+		$.get('../json/promotion.json', onGetData); // init
 	}
 
+function initStyle() {
+	$(window).resize(onResize).trigger('resize')
+	function onResize() {
+		$('.style-wrapper .ratio-wrap').each(function() {
+			var ratio = $(this).data('ratio')
+			var width = $(this).innerWidth();
+			var height = width * Number(ratio);
+			$(this).innerHeight(height);
+		})
+	}
+}
 
 
 

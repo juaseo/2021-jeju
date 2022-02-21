@@ -15,6 +15,10 @@ $(function () {
 			$('.notice-wrapper').find('.notice-content').hide();
 			$('.notice-wrapper').find('.bt-hide').hide();
 		}
+
+		$('.ratio').each(function() {
+
+		})
 	}
 
 	function scrollNotice(scTop) {
@@ -53,6 +57,7 @@ $(function () {
 
 	//*************** 이벤트 등록 *****************/
 	$(window).scroll(onScroll).trigger('scroll');
+
 
 
 	$('.header-wrapper .navi').mouseenter(onNaviEnter)
