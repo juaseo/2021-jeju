@@ -1,5 +1,5 @@
 /********************** 글로벌 설정 *********************/
-body > section {position: relative; z-index: 3; background-color: #fff; padding: 5em 0;}
+body > section {position: relative; z-index: 3; background-color: #fff; padding: 5em 0; overflow: hidden;}
 
 .title-wrap {text-align: center; margin-bottom: 5em;}
 .title-wrap h2.title {font-size: 3.5em; margin-bottom: .25em; font-family: 'Jost', sans-serif; letter-spacing: .05em;}
@@ -91,8 +91,8 @@ body > section {position: relative; z-index: 3; background-color: #fff; padding:
 .promo-wrapper .slide-stage .img-wrap > .ratio-bg {transition: all 1s;}
 .promo-wrapper .slide-stage .img-wrap:hover > .ratio-bg {transform: scale(1.1);}
 .promo-wrapper .slide-stage .cont-wrap {padding: 10% 0; border-bottom: 1px solid #ddd;}
-.promo-wrapper .slide-stage .cont-wrap  .title {margin-bottom: .5em; color: #b38859;}
-.promo-wrapper .slide-stage .cont-wrap  .desc {font-size: 1.5em; color: #333; line-height: 1.25;}
+.promo-wrapper .slide-stage .cont-wrap  .title {margin-bottom: 1em; color: #b38859;}
+.promo-wrapper .slide-stage .cont-wrap  .desc {font-size: 1.5em; color: #333; line-height: 1.25; text-align: center;}
 
 .promo-wrapper .bt-wrap {text-align: center;}
 .promo-wrapper .bt-wrap .bt-ghost.white {padding: .875em 3em;}
@@ -100,23 +100,47 @@ body > section {position: relative; z-index: 3; background-color: #fff; padding:
 
 
 /********************** style-wrapper *********************/
-.style-wrapper {background-color: #f5f0e7;}
+.style-wrapper {background-color: #f5f0e7; padding: 5em 0;}
 .style-wrapper .list-wrap {display: flex;}
 .style-wrapper .list {flex: 0 0 33.3333%; position: relative;}
-.style-wrapper .list .hover-bg { background-color: rgba(179, 136, 89, .95); opacity: 0; width: 100%; height: 100%; position: absolute; top: 0; left: 0; transition: all .5s;}
-.style-wrapper .list:hover .hover-bg {opacity: .85;}
-.style-wrapper .list .hover-cont { width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 10%; color: #fff;}
-.style-wrapper .list .title {font-size: 2em; margin-bottom: 1em;}
-.style-wrapper .list .bar {}
-.style-wrapper .list .content {font-size: 1.125em; width: 80%; line-height: 1.5; text-align: center; margin-bottom: 2.5em;}
+.style-wrapper .list .hover-bg  {background-color: rgba(179, 136, 89, .95); opacity: 0; width: 100%; height: 100%; position: absolute; top: 0; left: 0; transition: all .5s;}
+.style-wrapper .list .hover-cont {width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 10%; color: #fff;}
+.style-wrapper .list .title {font-size: 2em;}
+.style-wrapper .list .bar {width: 30px; height: 2px; background-color: #fff; margin: 0; transition: all .35s; transform: scaleX(0);}
+.style-wrapper .list .content {font-size: 1.125em; width: 80%; line-height: 1.5; text-align: center;}
 .style-wrapper .list .bt-ghost {border: 1px solid #fff;}
-.style-wrapper .list .bt-wrap {display: flex; flex-wrap: wrap; justify-content: space-between; width: 80%;}
+.style-wrapper .list .bt-wrap {width: 80%;}
+.style-wrapper .list .bt-wrap > div {display: flex; flex-wrap: wrap; justify-content: space-between;}
 .style-wrapper .list .bt-wrap .bt-ghost {margin-bottom: 10px; flex: 0 0 calc(50% - 5px);}
-.style-wrapper .list .bt-wrap .bt-ghost:last-child {flex: 0 0 100%;}
+.style-wrapper .list .bt-wrap .bt-ghost:last-child {flex: 0 0 100%;} 
+
+
+/** moving-animation **/
+.style-wrapper .list .moving-stage {height: 0; overflow: hidden; margin-bottom: 0;}
+.style-wrapper .list .moving-box {transition: all .35s; transform: translateY(100%); opacity: 0;}
+
+.style-wrapper .list:hover .moving-stage {height: auto;}
+.style-wrapper .list:hover .moving-stage.content {margin-bottom: 2.5em;}
+.style-wrapper .list:hover .moving-box {transform: translateY(0); opacity: 1;}
+.style-wrapper .list:hover .hover-bg {opacity: .85;}
+.style-wrapper .list:hover .bar {transform: scaleX(1); margin: 2em auto 1em auto;}
 
 
 
 /********************** room-wrapper *********************/
+.room-wrapper .slide-stage {position: relative; margin-bottom: 6em;}
+.room-wrapper .slide-stage .slide-bg {background-image: linear-gradient(to right, #28354b, #28354b 60%, #fff 60%, #fff) ;}
+.room-wrapper .slide-stage .swiper-container {width: calc(90% - 60px); transform: translate(45%, 10%);}
+.room-wrapper .slide-stage .pager-slide {text-align: center; margin-top: 5em; position: absolute; width: 100%;}
+.room-wrapper .slide-stage .pager-slide .swiper-pagination-bullet-active {border: 1px solid #b38859;}
+.room-wrapper .desc-wrapper {position: absolute; width: 35%; height: 100%; top: 0; left: 80px; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;}
+.room-wrapper .desc-wrapper .tag {color: #b38859; font-size: 1.125em; margin-bottom: .5em;}
+.room-wrapper .desc-wrapper .title {font-size: 2.5em; margin-bottom: .5em;}
+.room-wrapper .desc-wrapper .desc {font-size: 1.125em; margin-bottom: 2em; color: #999; line-height: 1.5; font-weight: 300;}
+.room-wrapper .bt-ghost {border: 1px solid #fff;}
+.room-wrapper .desc-wrapper .moving-stage {overflow: hidden;}
+.room-wrapper .desc-wrapper .moving-box {transition: all .35s; transform: translateY(100%);}
+.room-wrapper .desc-wrapper .moving-box.active {transform: translateY(0);}
 
 
 

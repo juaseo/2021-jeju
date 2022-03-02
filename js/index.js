@@ -7,6 +7,7 @@ $(function () {
 	slideDream()
 	slidePromo()
 	initStyle()
+	slideRoom()
 
 	function setCookie() {
 		var $cookieWrapper = $('.cookie-wrapper')
@@ -157,7 +158,9 @@ $(function () {
 	}
 
 	function slideDream() {
-		var swiper = getSwiper('.dream-wrapper', { break: 3 })
+		var swiper = getSwiper('.dream-wrapper', {
+			break: 3
+		})
 		// var swiper = new Swiper(container, getSwiper(el, { break: 3 }));
 		// swiperHover(swiper, el)
 	}
@@ -189,18 +192,51 @@ $(function () {
 		$.get('../json/promotion.json', onGetData); // init
 	}
 
-function initStyle() {
-	$(window).resize(onResize).trigger('resize')
-	function onResize() {
-		$('.style-wrapper .ratio-wrap').each(function() {
-			var ratio = $(this).data('ratio')
-			var width = $(this).innerWidth();
-			var height = width * Number(ratio);
-			$(this).innerHeight(height);
-		})
-	}
-}
+	function initStyle() {
+		$(window).resize(onResize).trigger('resize')
 
+		function onResize() {
+			$('.style-wrapper .ratio-wrap').each(function () {
+				var ratio = $(this).data('ratio')
+				var width = $(this).innerWidth();
+				var height = width * Number(ratio);
+				$(this).innerHeight(height);
+			})
+		}
+	}
+
+	function slideRoom() {
+		var room = [], swiper
+		var $movingBox = $('.room-wrapper .desc-wrapper .moving-box')
+		var $tag = $('.room-wrapper .desc-wrapper .tag > div')
+		var $title = $('.room-wrapper .desc-wrapper .title > div')
+		var $desc = $('.room-wrapper .desc-wrapper .desc > div')
+		function onGetData(r) {
+			room = r.room.slice()
+			swiper = getSwiper('.room-wrapper', {	break: 2, speed: 600 })
+			swiper.on('slideChange', onBefore);
+			swiper.on('slideChangeTransitionEnd', onchange);
+			showDesc(0)
+		}
+
+		function onBefore() {
+			$movingBox.removeClass('active')
+		}
+
+		function onchange(e) {
+			var idx = e.realIndex
+			showDesc(idx)
+		}
+
+		function showDesc(n) {
+			$tag.text(room[n].tag)
+			$title.text(room[n].title)
+			$desc.text(room[n].desc)
+			$movingBox.addClass('active')
+		}
+
+		$.get('../json/room.json', onGetData)
+	}
 
 
 
