@@ -141,6 +141,7 @@ $(function () {
 
 
 
+
 		$slide.eq(idx).css('z-index', depth++)
 		$slide.eq(idx).addClass('active')
 		for (var i = 0; i < len; i++) {
