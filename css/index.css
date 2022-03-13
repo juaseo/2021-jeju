@@ -102,31 +102,29 @@
 
 
 /********************** style-wrapper *********************/
-.style-wrapper {background-color: #f5f0e7; padding: 5em 0;}
+section.style-wrapper {background-color: #f5f0e7; padding: 5em 0 0 0;}
 .style-wrapper .list-wrap {display: flex;}
 .style-wrapper .list {flex: 0 0 33.3333%; position: relative;}
-.style-wrapper .list .hover-bg  {background-color: rgba(179, 136, 89, .95); opacity: 0; width: 100%; height: 100%; position: absolute; top: 0; left: 0; transition: all .5s;}
+.style-wrapper .list .hover-bg {background-color: rgba(179, 136, 89, 0.95); opacity: 0; width: 100%; height: 100%; position: absolute; top: 0; left: 0; transition: all .5s;}
+.style-wrapper .list:hover .hover-bg {opacity: 1;}
+
 .style-wrapper .list .hover-cont {width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 10%; color: #fff;}
-.style-wrapper .list .title {font-size: 2em;}
-.style-wrapper .list .bar {width: 30px; height: 2px; background-color: #fff; margin: 0; transition: all .35s; transform: scaleX(0);}
+.style-wrapper .list .title {font-size: 2.5em;}
 .style-wrapper .list .content {font-size: 1.125em; width: 80%; line-height: 1.5; text-align: center;}
 .style-wrapper .list .bt-ghost {border: 1px solid #fff;}
 .style-wrapper .list .bt-wrap {width: 80%;}
 .style-wrapper .list .bt-wrap > div {display: flex; flex-wrap: wrap; justify-content: space-between;}
 .style-wrapper .list .bt-wrap .bt-ghost {margin-bottom: 10px; flex: 0 0 calc(50% - 5px);}
-.style-wrapper .list .bt-wrap .bt-ghost:last-child {flex: 0 0 100%;} 
+.style-wrapper .list .bt-wrap .bt-ghost:last-child {flex: 0 0 100%;}
 
-
-/** moving-animation **/
-.style-wrapper .list .moving-stage {height: 0; overflow: hidden; margin-bottom: 0;}
-.style-wrapper .list .moving-box {transition: all .35s; transform: translateY(100%); opacity: 0;}
-
+/* moving-aniamtion */
+.style-wrapper .list .bar {width: 30px; height: 2px; background-color: #fff; margin: 0; transition: transform .5s; transform: scaleX(0);}
+.style-wrapper .list .moving-stage {width: 100%; overflow: hidden; height: 0; margin-bottom: 0; text-align: center;}
+.style-wrapper .list .moving-box {transition: all .5s; transform: translateY(100%); opacity: 0;}
+.style-wrapper .list:hover .bar {transform: scaleX(1); margin: 2em auto 1.5em auto;}
 .style-wrapper .list:hover .moving-stage {height: auto;}
 .style-wrapper .list:hover .moving-stage.content {margin-bottom: 2.5em;}
-.style-wrapper .list:hover .moving-box {transform: translateY(0); opacity: 1;}
-.style-wrapper .list:hover .hover-bg {opacity: .85;}
-.style-wrapper .list:hover .bar {transform: scaleX(1); margin: 2em auto 1em auto;}
-
+.style-wrapper .list:hover .moving-box { transform: translateY(0); opacity: 1;}
 
 
 /********************** room-wrapper *********************/
@@ -136,9 +134,9 @@
 .room-wrapper .slide-stage .pager-slide {text-align: center; margin-top: 5em; position: absolute; width: 100%;}
 .room-wrapper .slide-stage .pager-slide .swiper-pagination-bullet-active {border: 1px solid #b38859;}
 .room-wrapper .desc-wrapper {position: absolute; width: 35%; height: 100%; top: 0; left: 80px; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;}
-.room-wrapper .desc-wrapper .tag {color: #b38859; font-size: 1.125em; margin-bottom: .5em;}
-.room-wrapper .desc-wrapper .title {font-size: 2.5em; margin-bottom: .5em;}
-.room-wrapper .desc-wrapper .desc {font-size: 1.125em; margin-bottom: 2em; color: #999; line-height: 1.5; font-weight: 300;}
+.room-wrapper .desc-wrapper .tag {width: 100%; color: #b38859; font-size: 1.125em; margin-bottom: .5em;}
+.room-wrapper .desc-wrapper .title {width: 100%; font-size: 2.5em; margin-bottom: .5em;}
+.room-wrapper .desc-wrapper .desc {width: 100%; font-size: 1.125em; margin-bottom: 2em; color: #999; line-height: 1.5; font-weight: 300;}
 .room-wrapper .bt-ghost {border: 1px solid #fff;}
 .room-wrapper .desc-wrapper .moving-stage {overflow: hidden;}
 .room-wrapper .desc-wrapper .moving-box {transition: all .35s; transform: translateY(100%);}
@@ -183,11 +181,29 @@
 .sns-wrapper .desc-wrapper .sns:hover {border: #ff7157; background-color: #ff7157; color: #fff;}
 .sns-wrapper .sns-naver:hover {background: url(../img/index/naver-hover.png) no-repeat center;background-size: auto 1.25em;}
 .sns-wrapper .sns-kakao:hover {background: url(../img/index/kakao-hover.png) no-repeat center;background-size: auto 1.25em;}
+.sns-wrapper .sns-weixin {position: relative;}
+.sns-wrapper .sns-weixin > .qr-wrap {position: absolute; border: 3px solid #b38859; left: 50%; bottom: calc(100% + 20px); transform: translateX(-50%); z-index:100; display: none;}
+.sns-wrapper .sns-weixin > .qr-wrap::after {display: block; content: '▼'; font-size: 1.25em; position: absolute; bottom: -1.25em; left: 50%; transform: translateX(-50%); color: #b38859;}
+.sns-wrapper .sns-weixin:hover > .qr-wrap {display: block;}
 
 
 
 /********************** contact-wrapper *********************/
+.contact-wrapper {text-align: left;}
 
+.contact-wrapper h3.title {font-size: 2.5em; margin-bottom: .5em; text-align: left;}
+.contact-wrapper h4.title {text-align: left;}
+
+.contact-wrapper > .wrapper {display: flex; justify-content: space-between;}
+.contact-wrapper > .wrapper > div {flex: 49% 0 0; position: relative;}
+.contact-wrapper .letter-wrapper .title-wrap {position: absolute; color: #fff; top: 50%; left: 10%; transform: translateY(-50%);}
+.contact-wrapper .mail-wrapper {border-top: 2px solid #333; border-bottom: 1px solid #bbb; display: flex; align-items: center; justify-content: center;}
+.contact-wrapper .mail-wrap {flex: 80% 0 0;}
+.contact-wrapper .mail-form {display: flex;}
+.contact-wrapper .mail-form .mail-input {border: 1px solid #bbb; flex: 1 1; flex-grow: 1; padding: 0 1em;}
+.contact-wrapper .mail-form .mail-input::placeholder {color: #bbb; font-size: 1.25em;}
+.contact-wrapper .mail-form .mail-input:focus {border: 1px solid #b38859 ;}
+.contact-wrapper .mail-form .mail-send {background-color: #aaa; color: #fff; padding: 1.5em 2.5em; flex-shrink: 0;}
 
 
 /********************** cookie-wrapper *********************/

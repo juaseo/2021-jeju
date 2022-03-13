@@ -68,6 +68,20 @@ function scrollSpy(el, cls, _gap) {
 
 
 /*************** getSwiper *****************/
+/*
+- cls : '.promo-wrapper
+- opt 
+{
+	pager: true,
+	navi: true,
+	auto: true,
+	autoEl: '.slide-stage'
+	delay: 3000,
+	loop: true,
+	space: 40,
+	break: 1
+}
+*/
 function getSwiper(el, opt) {
 	var opt = opt || {};
 	var autoEl = el + ' ' + (opt.autoEl || '.slide-stage');
@@ -127,7 +141,6 @@ function getSwiper(el, opt) {
 		navigation: navigation,
 		autoplay: autoplay,
 		loop: opt.loop === false ? false : true,
-		speed: opt.speed || 500,
 		speed: opt.speed || 500,
 		slidesPerView: opt.break && opt.break > 5 ? opt.break - 4 : 1,
 		// slidesPerView: opt.break ? opt.break : 1,
