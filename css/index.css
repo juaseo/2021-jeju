@@ -183,7 +183,7 @@ section.style-wrapper {background-color: #f5f0e7; padding: 5em 0 0 0;}
 .sns-wrapper .sns-kakao:hover {background: url(../img/index/kakao-hover.png) no-repeat center;background-size: auto 1.25em;}
 .sns-wrapper .sns-weixin {position: relative;}
 .sns-wrapper .sns-weixin > .qr-wrap {position: absolute; border: 3px solid #b38859; left: 50%; bottom: calc(100% + 20px); transform: translateX(-50%); z-index:100; display: none;}
-.sns-wrapper .sns-weixin > .qr-wrap::after {display: block; content: '▼'; font-size: 1.25em; position: absolute; bottom: -1.25em; left: 50%; transform: translateX(-50%); color: #b38859;}
+.sns-wrapper .sns-weixin > .qr-wrap::after {display: block; content: '▼'; font-size: 1.25em; position: absolute; bottom: -1.325em; left: 50%; transform: translateX(-50%); color: #b38859;}
 .sns-wrapper .sns-weixin:hover > .qr-wrap {display: block;}
 
 
