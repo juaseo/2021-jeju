@@ -83,7 +83,7 @@ $(function () {
 			video.currentTime = 0;
 			if ($slide.eq(idx).hasClass('is-video')) video.play();
 			else {
-				clearTimeout(timeout); 
+				clearTimeout(timeout);
 				timeout = setTimeout(onPlay, gap);
 			}
 		}
@@ -144,7 +144,6 @@ $(function () {
 		}
 
 		function onGetWeather(r) {
-			console.log(r);
 			$weather.find('.icon').addClass(weatherIcon['i' + r.weather[0].icon]);
 			$weather.find('.temp').text(Math.floor(r.main.temp));
 			$weather.find('.date').text(moment(r.dt * 1000).format('YYYY. M. D. ddd'));
@@ -223,7 +222,6 @@ $(function () {
 
 		function onGetData(r) {
 			room = r.room.slice();
-			console.log(room);
 			swiper = getSwiper('.room-wrapper', {
 				break: 2,
 				speed: 600
@@ -307,6 +305,58 @@ $(function () {
 			});
 		}
 		$.get('../json/sns.json', onGetData);
+	}
+
+	function initContact() {
+		//********* Global *********/
+		var emailChk = false; // 이메일 검증을 통과했는가?
+		var agreeChk = false; // 이용약관을 동의했는가?
+		var $form = $('.contact-wrapper .mail-form');
+		var $input = $('.contact-wrapper .mail-input');
+		var $button = $('.contact-wrapper .mail-send');
+		var $alert = $('.contact-wrapper .valid-alert');
+		var $check = $('.contact-wrapper .agree-mail');
+
+		//********* Event Init *********/
+		$input.blur(onBlur);
+		$check.change(onChange);
+		$form.submit(onSubmit);
+
+		//********* Event Callback *********/
+		function onBlur() {
+			var email = $(this).val().trim();
+			if (validEmail(email)) {
+				emailChk = true;
+				$alert.removeClass('active')
+			} else {
+				emailChk = false;
+				$alert.addClass('active')
+			}
+			$button.attr('disabled', (emailChk && agreeChk) ? false : true)
+		}
+
+		function onChange() {
+			agreeChk = $(this).is(':checked');
+			$button.attr('disabled', (emailChk && agreeChk) ? false : true)
+		}
+
+		function onSubmit(e) {
+			e.preventDefault();	// submit이므로 전송되어야 하는데 전송기능을 막는다.
+			$form[0].contact_number.value = Math.random() * 100000 | 0;
+			emailjs.sendForm('service_gmail', 'template_gmail', this).then(function () {
+				alert('뉴스레터 신청이 완료되었습니다.');
+				$form[0].reset();
+				$button.attr('disabled', true)
+				agreeChk = false;
+				emailChk = false;
+			}, function (error) {
+				alert('뉴스레터 신청 오류!\n관리자에게 문의하세요.')
+			});
+			return false;
+		}
+
+		//********* User Function *********/
+		emailjs.init('9LaIT5QmhYMsgvt0C');
 	}
 
 })
