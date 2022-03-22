@@ -1,8 +1,3 @@
-// main-wrapper에서 할일
-// 1. 배너가 자동으로 움직인다
-// 2. 동영상은 플레이가 끝난 이후에 다음으로 넘어간다
-// 3. 배너가 나타나면 그 후에 내부요소들이 animation으로 나타난다
-
 /* if(idx == lastIdx) mainIdx = 0
 else idx = idx + 1 */
 
@@ -12,6 +7,33 @@ else idx = idx + 1 */
 
 /*************** Index *****************/
 $(function () {
+
+	var slick = {
+		autoplay: true,
+		autoplaySpeed: 2000,
+		pauseOnDotsHover: true,
+		infinite: true,
+		touchThreshold: 10,
+		arrows: false,
+		dots: true, 
+		speed: 500,
+		slidesToShow: 3,
+		slidesToScroll: 1,
+		responsive: [
+			{
+				breakpoint: 768,
+				settings: {
+					slidesToShow: 2
+				}
+			},
+			{
+				breakpoint: 576,
+				settings: {
+					slidesToShow: 1
+				}
+			}
+		]
+	}
 
 	weather();
 	setCookie();
@@ -167,9 +189,15 @@ $(function () {
 	}
 
 	function slideDream() {
-		var swiper = getSwiper('.dream-wrapper', {
-			break: 3
-		});
+		// var swiper = getSwiper('.dream-wrapper', {break: 3});
+		var $dream = $('.dream-wrapper');
+		var $slide = $('.dream-wrapper .slide-wrapper');
+		var $btPrev = $('.dream-wrapper .bt-slide.left');
+		var $btNext = $('.dream-wrapper .bt-slide.right');
+		var options = cloneObject(slick);
+		$slide.slick(options);
+		$btPrev.click(function() { $slide.slick('slickPrev') });
+		$btNext.click(function() { $slide.slick('slickNext') });
 	}
 
 	function slidePromo() {
@@ -200,16 +228,7 @@ $(function () {
 	}
 
 	function initStyle() {
-		$(window).resize(onResize).trigger('resize');
 
-		function onResize() {
-			$('.style-wrapper .ratio-wrap').each(function (i) {
-				var ratio = $(this).data('ratio');
-				var width = $(this).innerWidth();
-				var height = width * Number(ratio);
-				$(this).innerHeight(height);
-			})
-		}
 	}
 
 	function slideRoom() {
@@ -358,5 +377,16 @@ $(function () {
 		//********* User Function *********/
 		emailjs.init('9LaIT5QmhYMsgvt0C');
 	}
+
+	function onResize(e) {
+		$(' .ratio-wrap').each(function(i) {
+			var ratio = $(this).data('ratio') // data-ratio
+			var width = $(this).innerWidth();
+			var height = width * Number(ratio);
+			$(this).innerHeight(height);
+		})
+	}
+	
+	$(window).resize(onResize).trigger('resize');
 
 })

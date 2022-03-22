@@ -167,3 +167,9 @@ function getSwiper(el, opt) {
 
 	return swiper;
 }
+
+
+/*************** Object DeepCapy *****************/
+function cloneObject(obj) {
+	return JSON.parse(JSON.stringify(obj))
+}
