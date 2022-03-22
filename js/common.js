@@ -1,21 +1,3 @@
-// IIFE
-/* (function(){
-	alert('hi')
-})()
-
-window.onload = function() {
-	alert('hi2')
-}
-
-$(document).ready(function(){
-	alert('hi3')
-})
-
-$(function(){
-	alert('hi4')
-}) */
-
-
 /*************** header-wrapper *****************/
 $(function() {
 
