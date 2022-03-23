@@ -11,16 +11,14 @@ $(function () {
 	var slick = {
 		autoplay: true,
 		autoplaySpeed: 2000,
-		pauseOnDotsHover: true,
 		infinite: true,
 		touchThreshold: 10,
 		arrows: false,
-		dots: true, 
+		dots: true,
 		speed: 500,
 		slidesToShow: 3,
 		slidesToScroll: 1,
-		responsive: [
-			{
+		responsive: [{
 				breakpoint: 768,
 				settings: {
 					slidesToShow: 2
@@ -189,26 +187,26 @@ $(function () {
 	}
 
 	function slideDream() {
-		// var swiper = getSwiper('.dream-wrapper', {break: 3});
-		var $dream = $('.dream-wrapper');
-		var $slide = $('.dream-wrapper .slide-wrapper');
+		var $slick = $('.dream-wrapper .slide-wrapper');
 		var $btPrev = $('.dream-wrapper .bt-slide.left');
 		var $btNext = $('.dream-wrapper .bt-slide.right');
 		var options = cloneObject(slick);
-		$slide.slick(options);
-		$btPrev.click(function() { $slide.slick('slickPrev') });
-		$btNext.click(function() { $slide.slick('slickNext') });
+		$slick.slick(options);
+		makeSlickButton($slick, $btPrev, $btNext);
 	}
 
 	function slidePromo() {
-		var $promoWrapper = $('.promo-wrapper');
-		var $slideWrapper = $promoWrapper.find('.slide-wrapper');
+		var $promo = $('.promo-wrapper');
+		var $slick = $promo.find('.slide-wrapper');
+		var $btPrev = $promo.find('.bt-slide.left');
+		var $btNext = $promo.find('.bt-slide.right');
+		var options = cloneObject(slick);
 
 		function onGetData(r) {
 			// for(var i=0; i<r.promo.length; i++) {}
 			r.promo.forEach(function (v, i) {
 				var html = '';
-				html += '<li class="slide swiper-slide">';
+				html += '<li class="slide">';
 				html += '<div class="img-wrap ratio-wrap" data-ratio="1">';
 				html += '<div class="ratio-bg" style="background-image: url(' + v.src + ');"></div>';
 				html += '</div>';
@@ -217,12 +215,15 @@ $(function () {
 				html += '<div class="desc">' + v.desc + '</div>';
 				html += '</div>';
 				html += '</li>';
-				$slideWrapper.append(html);
-			})
-			var swiper = getSwiper('.promo-wrapper', {
-				break: 4,
-				pager: false
+				$slick.append(html);
 			});
+						
+			options.slidesToShow = 4;
+			options.dots = false;
+			options.responsive.unshift({breakpoint: 992, settings: {slidesToShow: 3}});
+			$slick.slick(options);
+			makeSlickButton($slick, $btPrev, $btNext);
+			$(window).trigger('resize');
 		}
 		$.get('../json/promotion.json', onGetData); // init
 	}
@@ -232,21 +233,31 @@ $(function () {
 	}
 
 	function slideRoom() {
-		var room = [],
-			swiper;
+		var room = [], swiper;
+		var $room = $('.room-wrapper')
+		var $slick = $room.find('.slide-wrapper')
 		var $movingBox = $('.room-wrapper .desc-wrapper .moving-box');
 		var $tag = $('.room-wrapper .desc-wrapper .tag > div');
 		var $title = $('.room-wrapper .desc-wrapper .title > div');
 		var $desc = $('.room-wrapper .desc-wrapper .desc > div');
+		var $btPrev = $room.find('.bt-slide.left');
+		var $btNext = $room.find('.bt-slide.right');
+		var options = cloneObject(slick);
 
 		function onGetData(r) {
 			room = r.room.slice();
-			swiper = getSwiper('.room-wrapper', {
-				break: 2,
-				speed: 600
-			});
-			swiper.on('slideChange', onBefore);
-			swiper.on('slideChangeTransitionEnd', onAfter);
+			options.autoplaySpeed = 4000;
+			options.slidesToShow = 2;
+			options.dots = false;
+			options.responsive.pop();
+			options.responsive[0].breakpoint = 992;
+			options.responsive[0].settings.slidesToShow = 1;
+			$slick.slick(options);
+			makeSlickButton($slick, $btPrev, $btNext);
+			$(window).trigger('resize');
+
+			$slick.on('beforeChange', onBefore);
+			$slick.on('afterChange', onAfter);
 			showDesc(0);
 		}
 
@@ -254,8 +265,7 @@ $(function () {
 			$movingBox.removeClass('active');
 		}
 
-		function onAfter() {
-			var idx = this.realIndex;
+		function onAfter(e, slick, idx) {
 			showDesc(idx);
 		}
 
@@ -284,12 +294,12 @@ $(function () {
 				html += '</li>';
 				$slideWrapper.append(html);
 			})
-			swiper = getSwiper('.svc-wrapper', {
-				break: 2,
-				speed: 600,
-				pager: false
-			});
-			swiper.on('slideChange', onChange);
+			// swiper = getSwiper('.svc-wrapper', {
+			// 	break: 2,
+			// 	speed: 600,
+			// 	pager: false
+			// });
+			// swiper.on('slideChange', onChange);
 			showAni(1);
 		}
 
@@ -317,11 +327,11 @@ $(function () {
 				html += '</li>';
 				$slideWrapper.append(html);
 			})
-			swiper = getSwiper('.sns-wrapper', {
-				break: 7,
-				space: 0,
-				pager: false
-			});
+			// swiper = getSwiper('.sns-wrapper', {
+			// 	break: 7,
+			// 	space: 0,
+			// 	pager: false
+			// });
 		}
 		$.get('../json/sns.json', onGetData);
 	}
@@ -360,7 +370,7 @@ $(function () {
 		}
 
 		function onSubmit(e) {
-			e.preventDefault();	// submit이므로 전송되어야 하는데 전송기능을 막는다.
+			e.preventDefault(); // submit이므로 전송되어야 하는데 전송기능을 막는다.
 			$form[0].contact_number.value = Math.random() * 100000 | 0;
 			emailjs.sendForm('service_gmail', 'template_gmail', this).then(function () {
 				alert('뉴스레터 신청이 완료되었습니다.');
@@ -378,15 +388,32 @@ $(function () {
 		emailjs.init('9LaIT5QmhYMsgvt0C');
 	}
 
+
+
+	//********* Global Function *********/
+	function makeSlickButton($slick, $prev, $next) {
+		$prev.click(function() { 
+			$slick.slick('slickPrev') 
+		});
+		$next.click(function() { 
+			$slick.slick('slickNext') 
+		});
+		$slick.find('.slick-dots').on('mouseenter', function() {
+			$slick.slick('slickPause');
+		});
+		$slick.find('.slick-dots').on('mouseleave', function() {
+			$slick.slick('slickPlay');
+		});
+	}
+
 	function onResize(e) {
-		$(' .ratio-wrap').each(function(i) {
+		$(' .ratio-wrap').each(function (i) {
 			var ratio = $(this).data('ratio') // data-ratio
 			var width = $(this).innerWidth();
 			var height = width * Number(ratio);
 			$(this).innerHeight(height);
 		})
 	}
-	
-	$(window).resize(onResize).trigger('resize');
 
+	$(window).resize(onResize).trigger('resize');
 })

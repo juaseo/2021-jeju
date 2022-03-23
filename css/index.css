@@ -63,9 +63,9 @@
 /********************** dream-wrapper *********************/
 .dream-wrapper {background-image: linear-gradient(#fff, #fff 40%,#eee 40%, #eee 100%); overflow: hidden;}
 .dream-wrapper .slide-stage {position: relative; margin-bottom: 6em;}
-.dream-wrapper .slide-stage > .slide-container {width: calc(100% - 40px); margin-left: 20px;}
+.dream-wrapper .slide-stage > .slide-container {width: 100%;}
 .dream-wrapper .slide-stage .slick-list {overflow: visible;}
-.dream-wrapper .slide-stage .slide {cursor: pointer; margin: 0 20px;}
+.dream-wrapper .slide-stage .slide {cursor: pointer; margin: 0 30px;}
 .dream-wrapper .slide-stage .cont-wrap {padding: 8%; min-height: 220px; position: relative; background-color: #fff; border: 1px solid #ddd;}
 .dream-wrapper .slide-stage .cont-wrap  .title {font-size: 1.75em; margin-bottom: .5em; text-align: center;}
 .dream-wrapper .slide-stage .cont-wrap  .desc {font-size: 1.125em; color: #888; line-height: 1.5;}
@@ -76,8 +76,8 @@
 
 .dream-wrapper .slide-stage .slick-dots {bottom: -3em;}
 .dream-wrapper .slide-stage .slick-dots li.slick-active {border: 1px solid #b38859;}
-.dream-wrapper .slide-stage .box.left {left: calc(-200% + 1px);}
-.dream-wrapper .slide-stage .box.right {right: calc(-200% + 1px);}
+.dream-wrapper .slide-stage .box.left {left: calc(-200% - 30px);}
+.dream-wrapper .slide-stage .box.right {right: calc(-200% - 30px);}
 
 .dream-wrapper .bt-wrap {text-align: center;}
 .dream-wrapper .bt-wrap .bt-ghost.white {padding: .875em 3em;}
@@ -87,9 +87,9 @@
 /********************** promo-wrapper *********************/
 .promo-wrapper {padding: 12em 0;}
 .promo-wrapper .slide-stage {position: relative; margin-bottom: 6em;}
-.promo-wrapper .slide-stage > .swiper-container {width: calc(100% - 60px); overflow: hidden;}
-.promo-wrapper .slide-stage > .swiper-container > .swiper-wrapper {width: 100%;}
-.promo-wrapper .slide-stage .slide {cursor: pointer;}
+.promo-wrapper .slide-stage > .slide-container {width: calc(100% - 32px); overflow: hidden; margin-left: 16px;}
+.promo-wrapper .slide-stage > .slide-container > .slide-wrapper {width: 100%;}
+.promo-wrapper .slide-stage .slide {cursor: pointer; margin: 0 16px;}
 .promo-wrapper .slide-stage .img-wrap {overflow: hidden;}
 .promo-wrapper .slide-stage .img-wrap > .ratio-bg {transition: all 1s;}
 .promo-wrapper .slide-stage .img-wrap:hover > .ratio-bg {transform: scale(1.1);}
@@ -131,9 +131,10 @@ section.style-wrapper {background-color: #f5f0e7; padding: 5em 0 0 0;}
 /********************** room-wrapper *********************/
 .room-wrapper .slide-stage {position: relative; margin-bottom: 6em;}
 .room-wrapper .slide-stage .slide-bg {background-image: linear-gradient(to right, #28354b, #28354b 60%, #fff 60%, #fff) ;}
-.room-wrapper .slide-stage .swiper-container {width: calc(90% - 60px); transform: translate(45%, 10%);}
-.room-wrapper .slide-stage .pager-slide {text-align: center; margin-top: 5em; position: absolute; width: 100%;}
-.room-wrapper .slide-stage .pager-slide .swiper-pagination-bullet-active {border: 1px solid #b38859;}
+.room-wrapper .slide-stage .slide-container {transform: translate(45%, 10%);}
+.room-wrapper .slide-stage .slide-container .slide {margin: 0 16px;}
+.room-wrapper .slide-stage .slick-dots {bottom: -5em; border: 1px solid red;}
+.room-wrapper .slide-stage .slick-dots li.slick-active {border: 1px solid #b38859;}
 .room-wrapper .desc-wrapper {position: absolute; width: 35%; height: 100%; top: 0; left: 80px; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;}
 .room-wrapper .desc-wrapper .tag {width: 100%; color: #b38859; font-size: 1.125em; margin-bottom: .5em;}
 .room-wrapper .desc-wrapper .title {width: 100%; font-size: 2.5em; margin-bottom: .5em;}
