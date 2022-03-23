@@ -279,37 +279,47 @@ $(function () {
 	}
 
 	function slideSvc() {
-		var $slideWrapper = $('.svc-wrapper .slide-wrapper');
-		var swiper, lastIdx;
+		var $svc = $('.svc-wrapper');
+		var $slick = $('.svc-wrapper .slide-wrapper');
+		var $slick = $svc.find('.slide-wrapper');
+		var $btPrev = $svc.find('.bt-slide.left');
+		var $btNext = $svc.find('.bt-slide.right');
+		var options = cloneObject(slick);
+		var lastIdx;
 
 		function onGetData(r) {
 			lastIdx = r.svc.length - 1;
 			r.svc.forEach(function (v, i) {
 				var html = '';
-				html += '<li class="slide swiper-slide" title="' + i + '">';
+				html += '<li class="slide" title="' + i + '">';
 				html += '<div class="img-wrap">';
 				html += '<img src="' + v.src + '" alt="svc" class="w-100">';
 				html += '</div>';
 				html += '<h4 class="title">' + v.title + '</h4>';
 				html += '</li>';
-				$slideWrapper.append(html);
+				$slick.append(html);
 			})
-			// swiper = getSwiper('.svc-wrapper', {
-			// 	break: 2,
-			// 	speed: 600,
-			// 	pager: false
-			// });
-			// swiper.on('slideChange', onChange);
+			options.dots = false;
+			options.slidesToShow = 2;
+			options.responsive.pop();
+			options.responsive[0].breakpoint = 992;
+			options.responsive[0].settings.slidesToShow = 1;
+			$slick.slick(options);
+			makeSlickButton($slick, $btPrev, $btNext);
+
+			$slick.on('beforeChange', onBefore);
+			$(window).trigger('resize');
 			showAni(1);
 		}
 
-		function onChange() {
-			showAni((this.realIndex == lastIdx) ? 0 : this.realIndex + 1);
+
+		function onBefore(e, slick, current, idx) {
+			showAni((idx === lastIdx) ? 0 : idx + 1);
 		}
 
 		function showAni(n) {
-			$slideWrapper.find('.slide').removeClass('active');
-			$slideWrapper.find('.slide[title="' + n + '"]').addClass('active');
+			$slick.find('.slide').removeClass('active');
+			$slick.find('.slide[title="' + n + '"]').addClass('active');
 		}
 		$.get('../json/svc.json', onGetData);
 	}
