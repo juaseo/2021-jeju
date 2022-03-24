@@ -22,7 +22,7 @@ $(function() {
 		if(scTop == 0) {
 			if($.cookie('hideNotice') !== 'Y') $notice.show();
 			$link.show();
-			$header.css('top', 'unset');
+			$header.css('top', 'auto');
 			$header.removeClass('active');
 		}
 		/* else if(scTop < 150) {
