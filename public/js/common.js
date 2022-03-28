@@ -84,10 +84,14 @@ $(function() {
 	$('.header-wrapper .link-lang .lang').click(onChgLang);
 
 	$('.bt-moving-top').click(onMovingTop);
+	$('.bt-moving-top2').click(onMovingTop);
+
+	$('.mo-link-wrapper .mo-lang').click(onChgLangMobile);
 
 
 	/*************** 이벤트 콜백 *****************/
-	function onMovingTop() {
+	function onMovingTop(each) {
+		e.preventDefault();
 		$('html, body').stop().animate({ "scrollTop": 0 }, 300);
 	}
 
@@ -148,6 +152,12 @@ $(function() {
 		var spanLang = $span.text();
 		$span.text(myLang);
 		$(this).text(spanLang);
+	}
+
+	function onChgLangMobile(e) {
+		e.preventDefault();
+		if($(this).text() === 'KR') $(this).text('EN');
+		else $(this).text('KR');
 	}
 
 })
