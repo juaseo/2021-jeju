@@ -1,3 +1,21 @@
+// IIFE
+/* (function(){
+	alert('hi')
+})()
+
+window.onload = function() {
+	alert('hi2')
+}
+
+$(document).ready(function(){
+	alert('hi3')
+})
+
+$(function(){
+	alert('hi4')
+}) */
+
+
 /*************** header-wrapper *****************/
 $(function() {
 
@@ -40,6 +58,7 @@ $(function() {
 			$header.css('top', 0);
 			$header.addClass('active');
 		}
+		if(isMobile) $header.addClass('active');
 	}
 
 	function movingTop(scTop) {
