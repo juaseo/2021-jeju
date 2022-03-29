@@ -1,3 +1,8 @@
+// main-wrapper에서 할일
+// 1. 배너가 자동으로 움직인다
+// 2. 동영상은 플레이가 끝난 이후에 다음으로 넘어간다
+// 3. 배너가 나타나면 그 후에 내부요소들이 animation으로 나타난다
+
 /* if(idx == lastIdx) mainIdx = 0
 else idx = idx + 1 */
 
@@ -18,7 +23,8 @@ $(function () {
 		speed: 500,
 		slidesToShow: 3,
 		slidesToScroll: 1,
-		responsive: [{
+		responsive: [
+			{
 				breakpoint: 768,
 				settings: {
 					slidesToShow: 2
@@ -132,6 +138,7 @@ $(function () {
 		$('.bt-video').click(onModalVideo);
 		$('.modal-video').find('.bt-close').click(onModalVideoClose);
 
+
 		video.addEventListener('loadedmetadata', onAni); // 시작시점
 	}
 
@@ -164,6 +171,7 @@ $(function () {
 		}
 
 		function onGetWeather(r) {
+			console.log(r);
 			$weather.find('.icon').addClass(weatherIcon['i' + r.weather[0].icon]);
 			$weather.find('.temp').text(Math.floor(r.main.temp));
 			$weather.find('.date').text(moment(r.dt * 1000).format('YYYY. M. D. ddd'));
@@ -187,6 +195,7 @@ $(function () {
 	}
 
 	function slideDream() {
+		// var swiper = getSwiper('.dream-wrapper', { break: 3 });
 		var $slick = $('.dream-wrapper .slide-wrapper');
 		var $btPrev = $('.dream-wrapper .bt-slide.left');
 		var $btNext = $('.dream-wrapper .bt-slide.right');
@@ -217,7 +226,7 @@ $(function () {
 				html += '</li>';
 				$slick.append(html);
 			});
-						
+			
 			options.slidesToShow = 4;
 			options.dots = false;
 			options.responsive.unshift({breakpoint: 992, settings: {slidesToShow: 3}});
@@ -229,13 +238,13 @@ $(function () {
 	}
 
 	function initStyle() {
-
+		
 	}
 
 	function slideRoom() {
 		var room = [], swiper;
-		var $room = $('.room-wrapper')
-		var $slick = $room.find('.slide-wrapper')
+		var $room = $('.room-wrapper');
+		var $slick = $room.find('.slide-wrapper');
 		var $movingBox = $('.room-wrapper .desc-wrapper .moving-box');
 		var $tag = $('.room-wrapper .desc-wrapper .tag > div');
 		var $title = $('.room-wrapper .desc-wrapper .title > div');
@@ -249,7 +258,7 @@ $(function () {
 			options.autoplaySpeed = 4000;
 			options.slidesToShow = 2;
 			options.dots = false;
-			options.responsive.pop();
+			options.responsive.pop();	// 배열의 마지막 요소를 빼낸다
 			options.responsive[0].breakpoint = 992;
 			options.responsive[0].settings.slidesToShow = 1;
 			$slick.slick(options);
@@ -280,7 +289,6 @@ $(function () {
 
 	function slideSvc() {
 		var $svc = $('.svc-wrapper');
-		var $slick = $('.svc-wrapper .slide-wrapper');
 		var $slick = $svc.find('.slide-wrapper');
 		var $btPrev = $svc.find('.bt-slide.left');
 		var $btNext = $svc.find('.bt-slide.right');
@@ -299,19 +307,17 @@ $(function () {
 				html += '</li>';
 				$slick.append(html);
 			})
-			options.dots = false;
 			options.slidesToShow = 2;
+			options.dots = false;
 			options.responsive.pop();
 			options.responsive[0].breakpoint = 992;
 			options.responsive[0].settings.slidesToShow = 1;
 			$slick.slick(options);
 			makeSlickButton($slick, $btPrev, $btNext);
-
 			$slick.on('beforeChange', onBefore);
 			$(window).trigger('resize');
 			showAni(1);
 		}
-
 
 		function onBefore(e, slick, current, idx) {
 			showAni((idx === lastIdx) ? 0 : idx + 1);
@@ -330,7 +336,6 @@ $(function () {
 		var $btPrev = $sns.find('.bt-slide.left');
 		var $btNext = $sns.find('.bt-slide.right');
 		var options = cloneObject(slick);
-		var swiper;
 
 		function onGetData(r) {
 			r.sns.forEach(function (v, i) {
@@ -348,6 +353,7 @@ $(function () {
 			options.responsive.unshift({breakpoint: 992, settings: {slidesToShow: 4}});
 			options.responsive.unshift({breakpoint: 1200, settings: {slidesToShow: 5}});
 			options.responsive.unshift({breakpoint: 1400, settings: {slidesToShow: 6}});
+			console.log(options.responsive)
 			$slick.slick(options);
 			makeSlickButton($slick, $btPrev, $btNext);
 		}
@@ -355,7 +361,7 @@ $(function () {
 	}
 
 	function initContact() {
-		//********* Global *********/
+		/********* Global *********/
 		var emailChk = false; // 이메일 검증을 통과했는가?
 		var agreeChk = false; // 이용약관을 동의했는가?
 		var $form = $('.contact-wrapper .mail-form');
@@ -364,12 +370,12 @@ $(function () {
 		var $alert = $('.contact-wrapper .valid-alert');
 		var $check = $('.contact-wrapper .agree-mail');
 
-		//********* Event Init *********/
+		/********* Event Init *********/
 		$input.blur(onBlur);
 		$check.change(onChange);
 		$form.submit(onSubmit);
 
-		//********* Event Callback *********/
+		/********* Event Callback *********/
 		function onBlur() {
 			var email = $(this).val().trim();
 			if (validEmail(email)) {
@@ -402,13 +408,12 @@ $(function () {
 			return false;
 		}
 
-		//********* User Function *********/
-		emailjs.init('9LaIT5QmhYMsgvt0C');
+		/********* User Function *********/
+		emailjs.init('user_TROFqVnbPGZyygPAci7nt'); // 본인거로 꼭 바꿔넣으세요.
 	}
-
-
-
-	//********* Global Function *********/
+	
+	
+	/********* Global Function *********/
 	function makeSlickButton($slick, $prev, $next) {
 		$prev.click(function() { 
 			$slick.slick('slickPrev') 
@@ -423,15 +428,16 @@ $(function () {
 			$slick.slick('slickPlay');
 		});
 	}
-
+	
 	function onResize(e) {
-		$(' .ratio-wrap').each(function (i) {
-			var ratio = $(this).data('ratio') // data-ratio
+		$('.ratio-wrap').each(function(i) {
+			var ratio = $(this).data('ratio');
 			var width = $(this).innerWidth();
 			var height = width * Number(ratio);
 			$(this).innerHeight(height);
 		})
 	}
-
+	
+	
 	$(window).resize(onResize).trigger('resize');
 })
